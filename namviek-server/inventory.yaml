@@ -1,0 +1,7 @@
+webservers:
+  hosts:
+    web01:
+      ansible_host: dainh@194.233.88.219
+    # web02:
+    #   ansible_host: dainh@127.0.0.1
+    #   ansible_port: 3022
