@@ -1,0 +1,11 @@
+- name: Install github runer
+  # become: false
+  hosts: webservers
+  tasks:
+    - name: Install nohub for running command in background even if exiting ssh session
+      apt:
+        name: coreutils # this will help the command `./run.sh &` run in background 
+
+    - name: Last step, launch GithubRunner
+      shell:
+        cmd: cd ~/actions-runner && ./run.sh &
