@@ -1,11 +1,21 @@
-- name: Install github runer
-  # become: false
+- name: Start Github runner as a service
+  become: true
   hosts: webservers
   tasks:
-    - name: Install nohub for running command in background even if exiting ssh session
-      apt:
-        name: coreutils # this will help the command `./run.sh &` run in background 
+
+    # - name: Test root
+    #   shell:
+    #     cmd: whoami
+    #   become: true
+    #   register: out
+    #
+    - name: Print root user
+      shell:
+        cmd: id -u
 
     - name: Last step, launch GithubRunner
+      # become: true
+      # become_method: sudo
       shell:
-        cmd: cd ~/actions-runner && ./run.sh &
+        cmd: cd ~/actions-runner && ./svc.sh start
+        # cmd: /home/dainh/actions-runner/svc.sh install && /home/dainh/actions-runner/svc.sh start

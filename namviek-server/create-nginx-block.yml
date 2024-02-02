@@ -1,0 +1,19 @@
+- name: Create nginx block
+  become: true
+  hosts: webservers
+  tasks:
+    - name: Copy nginx config to /etc/nginx/sites-available/your_domain
+      copy:
+        src: ./files/nginx.conf 
+        dest: /etc/nginx/sites-available/namviek
+
+    - name: Link this file to /etc/nginx/sites-enabled/your_domain
+      shell:
+        cmd: ln -s /etc/nginx/sites-available/namviek /etc/nginx/sites-enabled/
+
+    - name: Restart nginx service
+      service:
+        name: nginx
+        state: restarted
+
+

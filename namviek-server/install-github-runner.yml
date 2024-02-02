@@ -1,15 +1,13 @@
 - name: Install github runer
-  # become: false
+  # become: true
+  # become_user: dainh
   hosts: webservers
   vars:
     repo: https://github.com/hudy9x/namviek
-    token: AWYMQK5FS3JPVZYSQR5QOR3FXPPOK
-    runner_name: myrunner
+    token: AWYMQK4IMKHXZHSLNXRMPE3FXUEP6
+    runner_name: contabo-sv1
   tasks:
     - name: Create the runner and start the configuration experience
       shell:
         cmd: cd ~/actions-runner && ./config.sh --unattended --url "{{ repo }}" --token "{{ token }}" --replace --name "{{ runner_name }}" --labels myvps
 
-    - name: Last step, launch GithubRunner
-      shell:
-        cmd: cd ~/actions-runner && ./run.sh &

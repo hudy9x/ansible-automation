@@ -1,0 +1,9 @@
+- name: Create another user as root user
+  become: true
+  tasks:
+    - name: Create dainh user
+      user:
+        name: dainh
+        password: Huudai09
+        groups: admin
+          
