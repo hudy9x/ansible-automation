@@ -1,9 +1,10 @@
 - name: Create another user as root user
   become: true
+  become_user: root
+  hosts: webservers
   tasks:
     - name: Create dainh user
       user:
-        name: dainh
+        name: huudai09
         password: Huudai09
         groups: admin
-          

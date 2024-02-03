@@ -1,0 +1,5 @@
+- name: Start installing web server
+  become: true
+  tasks:
+    - name: Create dainh user
+      import_playbook: create-root-user.yml
