@@ -19,10 +19,6 @@
         name: redis
         update_cache: yes
 
-    # - name: Install Redis
-    #   community.general.snap:
-    #     name:
-    #       - redis
 
     - name: Install nginx
       apt:
@@ -43,5 +39,5 @@
 
     - name: Start redis
       service:
-        name: redis
+        name: redis-server
         state: started
