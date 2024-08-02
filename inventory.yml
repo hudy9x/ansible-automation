@@ -1,0 +1,6 @@
+webservers:
+  hosts:
+    web01:
+      ansible_host: ubuntu@18.136.209.109
+      # ansible_python_interpreter: /usr/bin/python3.9
+

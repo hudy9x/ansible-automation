@@ -3,11 +3,10 @@
   # become_user: dainh
   hosts: webservers
   vars:
-    repo: https://github.com/hudy9x/namviek
-    token: AWYMQK4IMKHXZHSLNXRMPE3FXUEP6
-    runner_name: contabo-sv1
+    repo: https://github.com/hudy9x/ansible-automation
+    token: AWYMQK5RAI5LQDUVTIBLMC3GVR2IK
+    runner_name: ubuntu-sv1
   tasks:
     - name: Create the runner and start the configuration experience
       shell:
         cmd: cd ~/actions-runner && ./config.sh --unattended --url "{{ repo }}" --token "{{ token }}" --replace --name "{{ runner_name }}" --labels myvps
-

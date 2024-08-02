@@ -1,0 +1,43 @@
+- name: Install webservers
+  become: true
+  hosts: webservers
+  tasks:
+    - name: Print message
+      debug:
+        msg: Start setting up webserver
+
+    - name: Update packages
+      apt:
+        update_cache: yes
+
+    - name: Add redis repository
+      shell:
+        cmd: curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg && echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/redis.list
+
+    - name: Update repo and install redis
+      apt:
+        name: redis
+        update_cache: yes
+
+
+    - name: Install nginx
+      apt:
+        name: nginx
+
+    - name: Install nodejs
+      shell:
+        cmd: curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && sudo apt-get install -y nodejs
+
+    - name: Install pm2
+      shell:
+        cmd: npm install pm2@latest -g
+
+    - name: Start nginx
+      service:
+        name: nginx
+        state: started
+
+    - name: Start redis
+      service:
+        name: redis-server
+        state: started

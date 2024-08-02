@@ -1,0 +1,12 @@
+- name: Start Github runner as a service
+  become: true
+  hosts: webservers
+  tasks:
+
+    - name: Install github runner as service
+      shell:
+        cmd: cd ~/actions-runner && ./svc.sh install
+
+    - name: Start github runner service
+      shell:
+        cmd: cd ~/actions-runner && ./svc.sh start
